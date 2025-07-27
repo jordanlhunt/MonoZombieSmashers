@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapEditor", "MapEditor\MapEditor.csproj", "{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZombieSmashersMonoGame", "ZombieSmashersMonogame\ZombieSmashersMonoGame.csproj", "{24935571-65D4-288D-3655-7EEC5718335F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24935571-65D4-288D-3655-7EEC5718335F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24935571-65D4-288D-3655-7EEC5718335F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24935571-65D4-288D-3655-7EEC5718335F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24935571-65D4-288D-3655-7EEC5718335F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {948683D3-8C47-4049-BE14-BA247D1A5ABD}
+	EndGlobalSection
+EndGlobal
