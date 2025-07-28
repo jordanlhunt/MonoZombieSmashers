@@ -1,7 +1,31 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\mapeditor\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|solutionrelative:mapeditor\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24935571-65D4-288D-3655-7EEC5718335F}|ZombieSmashersMonogame\\ZombieSmashersMonoGame.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\zombiesmashersmonogame\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24935571-65D4-288D-3655-7EEC5718335F}|ZombieSmashersMonogame\\ZombieSmashersMonoGame.csproj|solutionrelative:zombiesmashersmonogame\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\mapeditor\\content\\fonts\\rulergold.spritefont||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|solutionrelative:mapeditor\\content\\fonts\\rulergold.spritefont||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\mapeditor\\text.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|solutionrelative:mapeditor\\text.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jorda\\.nuget\\packages\\monogame.content.builder.task\\3.8.4\\build\\MonoGame.Content.Builder.Task.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24935571-65D4-288D-3655-7EEC5718335F}|ZombieSmashersMonogame\\ZombieSmashersMonoGame.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\zombiesmashersmonogame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24935571-65D4-288D-3655-7EEC5718335F}|ZombieSmashersMonogame\\ZombieSmashersMonoGame.csproj|solutionrelative:zombiesmashersmonogame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -9,11 +33,89 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RulerGold.spritefont",
+              "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\Content\\Fonts\\RulerGold.spritefont",
+              "RelativeDocumentMoniker": "MapEditor\\Content\\Fonts\\RulerGold.spritefont",
+              "ToolTip": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\Content\\Fonts\\RulerGold.spritefont",
+              "RelativeToolTip": "MapEditor\\Content\\Fonts\\RulerGold.spritefont",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-28T03:56:40.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\Game1.cs",
+              "RelativeDocumentMoniker": "MapEditor\\Game1.cs",
+              "ToolTip": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\Game1.cs*",
+              "RelativeToolTip": "MapEditor\\Game1.cs*",
+              "ViewState": "AgIAACcAAAAAAAAAAAAiwD4AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-28T03:55:38.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MonoGame.Content.Builder.Task.targets",
+              "DocumentMoniker": "C:\\Users\\jorda\\.nuget\\packages\\monogame.content.builder.task\\3.8.4\\build\\MonoGame.Content.Builder.Task.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\.nuget\\packages\\monogame.content.builder.task\\3.8.4\\build\\MonoGame.Content.Builder.Task.targets",
+              "ToolTip": "C:\\Users\\jorda\\.nuget\\packages\\monogame.content.builder.task\\3.8.4\\build\\MonoGame.Content.Builder.Task.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\.nuget\\packages\\monogame.content.builder.task\\3.8.4\\build\\MonoGame.Content.Builder.Task.targets",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAzwJoAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-07-28T03:46:30.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Text.cs",
+              "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\Text.cs",
+              "RelativeDocumentMoniker": "MapEditor\\Text.cs",
+              "ToolTip": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\Text.cs",
+              "RelativeToolTip": "MapEditor\\Text.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T18:34:15.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\ZombieSmashersMonogame\\Game1.cs",
+              "RelativeDocumentMoniker": "ZombieSmashersMonogame\\Game1.cs",
+              "ToolTip": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\ZombieSmashersMonogame\\Game1.cs",
+              "RelativeToolTip": "ZombieSmashersMonogame\\Game1.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAmwBsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T18:30:16.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\ZombieSmashersMonogame\\Program.cs",
+              "RelativeDocumentMoniker": "ZombieSmashersMonogame\\Program.cs",
+              "ToolTip": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\ZombieSmashersMonogame\\Program.cs",
+              "RelativeToolTip": "ZombieSmashersMonogame\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T18:30:14.634Z",
+              "EditorCaption": ""
             }
           ]
         }

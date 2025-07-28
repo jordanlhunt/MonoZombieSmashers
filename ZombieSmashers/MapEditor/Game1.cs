@@ -8,6 +8,8 @@ namespace MapEditor
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Text text;
+        private SpriteFont spriteFont;
 
         public Game1()
         {
@@ -19,33 +21,43 @@ namespace MapEditor
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            spriteFont = Content.Load<SpriteFont>(@"Fonts/RulerGold");
+            text = new Text(_spriteBatch, spriteFont);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (
+                GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
+                || Keyboard.GetState().IsKeyDown(Keys.Escape)
+            )
                 Exit();
-
             // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-
+            text.Size = 2.25f;
+            text.Color = Color.Black;
+            for (int i = 0; i < 3; i++)
+            {
+                if (i == 2)
+                {
+                    text.Color = Color.White;
+                }
+                text.DrawText(
+                    new Vector2(25 - i * 2, 250 - i * 2),
+                    "Zombie Smashers Monogame Stays Winnin'!"
+                );
+            }
             base.Draw(gameTime);
         }
     }

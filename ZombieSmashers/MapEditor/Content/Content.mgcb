@@ -13,10 +13,10 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Fonts/RulerGold.ttf
-/importer:
+#begin Fonts/RulerGold.spritefont
+/importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Fonts/RulerGold.ttf
+/build:Fonts/RulerGold.spritefont
 

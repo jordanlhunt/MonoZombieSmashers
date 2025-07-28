@@ -1,6 +1,8 @@
-﻿using System.Drawing;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Color = Microsoft.Xna.Framework.Color;
+using Point = Microsoft.Xna.Framework.Point;
+using Rectangle = Microsoft.Xna.Framework.Rectangle;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace MapEditor
 {
@@ -12,7 +14,6 @@ namespace MapEditor
         SpriteFont spriteFont;
         SpriteBatch spriteBatch;
         #endregion
-
         #region Constructor
         public Text(SpriteBatch spriteBatch, SpriteFont spriteFont)
         {
@@ -20,7 +21,6 @@ namespace MapEditor
             this.spriteFont = spriteFont;
         }
         #endregion
-
         #region Properties
         public Color Color
         {
@@ -33,12 +33,12 @@ namespace MapEditor
             set { size = value; }
         }
         #endregion
-
         #region Public Methods
         public void DrawText(Vector2 drawCoordinates, string textToDraw)
         {
             spriteBatch.Begin();
             spriteBatch.DrawString(
+                spriteFont,
                 textToDraw,
                 drawCoordinates,
                 currentColor,
@@ -48,6 +48,43 @@ namespace MapEditor
                 SpriteEffects.None,
                 1f
             );
+            spriteBatch.End();
+        }
+
+        public Rectangle GetTextBounds(SpriteFont spriteFont, string text, Vector2 position)
+        {
+            Vector2 textSize = spriteFont.MeasureString(text) * size;
+            return new Rectangle(
+                (int)position.X,
+                (int)position.Y,
+                (int)textSize.X,
+                (int)textSize.Y
+            );
+        }
+
+        public bool IsMouseOverText(Rectangle textRectangle, Point mousePosition)
+        {
+            return textRectangle.Contains(mousePosition);
+        }
+
+        public bool IsTextClicked(Rectangle textRectangle, Point mousePosition, bool isMouseClicked)
+        {
+            return textRectangle.Contains(mousePosition) && isMouseClicked;
+        }
+
+        public void DrawHoverableText(
+            Vector2 drawPosition,
+            string textString,
+            Point mousePosition,
+            bool isMouseClicked
+        )
+        {
+            Rectangle textBounds = GetTextBounds(spriteFont, textString, drawPosition);
+            Color drawColor = Color.White;
+            if (IsMouseOverText(textBounds, mousePosition))
+            {
+                drawColor = Color.LightYellow;
+            }
         }
         #endregion
     }
