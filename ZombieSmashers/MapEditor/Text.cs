@@ -14,13 +14,6 @@ namespace MapEditor
         SpriteFont spriteFont;
         SpriteBatch spriteBatch;
         #endregion
-        #region Constructor
-        public Text(SpriteBatch spriteBatch, SpriteFont spriteFont)
-        {
-            this.spriteBatch = spriteBatch;
-            this.spriteFont = spriteFont;
-        }
-        #endregion
         #region Properties
         public Color Color
         {
@@ -31,6 +24,13 @@ namespace MapEditor
         {
             get { return size; }
             set { size = value; }
+        }
+        #endregion
+        #region Constructor
+        public Text(SpriteBatch spriteBatch, SpriteFont spriteFont)
+        {
+            this.spriteBatch = spriteBatch;
+            this.spriteFont = spriteFont;
         }
         #endregion
         #region Public Methods
@@ -72,12 +72,7 @@ namespace MapEditor
             return textRectangle.Contains(mousePosition) && isMouseClicked;
         }
 
-        public void DrawHoverableText(
-            Vector2 drawPosition,
-            string textString,
-            Point mousePosition,
-            bool isMouseClicked
-        )
+        public void DrawHoverableText(Vector2 drawPosition, string textString, Point mousePosition)
         {
             Rectangle textBounds = GetTextBounds(spriteFont, textString, drawPosition);
             Color drawColor = Color.White;

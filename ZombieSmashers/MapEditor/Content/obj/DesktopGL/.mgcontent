@@ -4,9 +4,15 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/jorda/source/repos/CSHARP/Monogame/MonoZombieSmashers/ZombieSmashers/MapEditor/Content/Fonts/RulerGold.spritefont</File>
+    <File>c:/Users/jorda/source/repos/CSHARP/Monogame/MonoZombieSmashers/ZombieSmashers/MapEditor/Content/Fonts/RulerGold.spritefont</File>
+    <File>c:/Users/jorda/source/repos/CSHARP/Monogame/MonoZombieSmashers/ZombieSmashers/MapEditor/Content/MapEditor/Graphics/1x1.bmp</File>
+    <File>c:/Users/jorda/source/repos/CSHARP/Monogame/MonoZombieSmashers/ZombieSmashers/MapEditor/Content/MapEditor/Graphics/icons.dds</File>
+    <File>c:/Users/jorda/source/repos/CSHARP/Monogame/MonoZombieSmashers/ZombieSmashers/MapEditor/Content/MapEditor/Graphics/maps1.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

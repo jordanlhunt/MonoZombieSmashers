@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MapEditor.MapClasses;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -6,11 +7,15 @@ namespace MapEditor
 {
     public class Game1 : Game
     {
+        #region Member Variables
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Text text;
         private SpriteFont spriteFont;
-
+        Texture2D[] mapTextures;
+        Texture2D nullTexture;
+        Map map;
+        #endregion
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -20,6 +25,7 @@ namespace MapEditor
 
         protected override void Initialize()
         {
+            map = new Map();
             // TODO: Add your initialization logic here
             base.Initialize();
         }
@@ -29,6 +35,7 @@ namespace MapEditor
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteFont = Content.Load<SpriteFont>(@"Fonts/RulerGold");
             text = new Text(_spriteBatch, spriteFont);
+            nullTexture = Content.Load<Texture2D>(@"Graphics/1x1");
         }
 
         protected override void Update(GameTime gameTime)
@@ -38,7 +45,6 @@ namespace MapEditor
                 || Keyboard.GetState().IsKeyDown(Keys.Escape)
             )
                 Exit();
-            // TODO: Add your update logic here
             base.Update(gameTime);
         }
 
