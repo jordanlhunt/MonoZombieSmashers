@@ -26,7 +26,7 @@ namespace MapEditor.MapClasses
         #region Private Methods
         private void ReadMapElements()
         {
-            StreamReader streamReader = new StreamReader(@"Content/map_data.txt");
+            StreamReader streamReader = new StreamReader(@"Content/MapEditor/map_data.txt");
             string currentLine;
             int sourceTextureIndex;
             int currentMapElementIndex = -1;

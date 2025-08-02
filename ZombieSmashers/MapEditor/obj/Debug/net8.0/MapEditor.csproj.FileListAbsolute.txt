@@ -34,3 +34,6 @@ C:\Users\jorda\source\repos\CSHARP\Monogame\MonoZombieSmashers\ZombieSmashers\Ma
 C:\Users\jorda\source\repos\CSHARP\Monogame\MonoZombieSmashers\ZombieSmashers\MapEditor\bin\Debug\net8.0\Content\Fonts\RulerGold.spritefont
 C:\Users\jorda\source\repos\CSHARP\Monogame\MonoZombieSmashers\ZombieSmashers\MapEditor\bin\Debug\net8.0\Content\MapEditor\map_data.txt
 C:\Users\jorda\source\repos\CSHARP\Monogame\MonoZombieSmashers\ZombieSmashers\MapEditor\bin\Debug\net8.0\Content\Fonts\RulerGold.xnb
+C:\Users\jorda\source\repos\CSHARP\Monogame\MonoZombieSmashers\ZombieSmashers\MapEditor\bin\Debug\net8.0\Content\MapEditor\Graphics\1x1.xnb
+C:\Users\jorda\source\repos\CSHARP\Monogame\MonoZombieSmashers\ZombieSmashers\MapEditor\bin\Debug\net8.0\Content\MapEditor\Graphics\icons.xnb
+C:\Users\jorda\source\repos\CSHARP\Monogame\MonoZombieSmashers\ZombieSmashers\MapEditor\bin\Debug\net8.0\Content\MapEditor\Graphics\maps1.xnb

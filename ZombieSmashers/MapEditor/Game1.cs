@@ -26,7 +26,9 @@ namespace MapEditor
         protected override void Initialize()
         {
             map = new Map();
-            // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.ApplyChanges();
             base.Initialize();
         }
 
@@ -35,7 +37,14 @@ namespace MapEditor
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             spriteFont = Content.Load<SpriteFont>(@"Fonts/RulerGold");
             text = new Text(_spriteBatch, spriteFont);
-            nullTexture = Content.Load<Texture2D>(@"Graphics/1x1");
+            nullTexture = Content.Load<Texture2D>(@"MapEditor/Graphics/1x1");
+            mapTextures = new Texture2D[1];
+            for (int i = 0; i < mapTextures.Length; i++)
+            {
+                mapTextures[i] = Content.Load<Texture2D>(
+                    @"MapEditor/Graphics/maps" + (i + 1).ToString()
+                );
+            }
         }
 
         protected override void Update(GameTime gameTime)
@@ -50,21 +59,63 @@ namespace MapEditor
 
         protected override void Draw(GameTime gameTime)
         {
+            _spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            text.Size = 2.25f;
-            text.Color = Color.Black;
-            for (int i = 0; i < 3; i++)
-            {
-                if (i == 2)
-                {
-                    text.Color = Color.White;
-                }
-                text.DrawText(
-                    new Vector2(25 - i * 2, 250 - i * 2),
-                    "Zombie Smashers Monogame Stays Winnin'!"
-                );
-            }
+            DrawMapElements();
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
+
+        #region Private Methods
+        private void DrawMapElements()
+        {
+            Rectangle sourceRectangle = new Rectangle();
+            Rectangle destinationRectangle = new Rectangle();
+            int windowOffSetX = _graphics.PreferredBackBufferWidth - 256;
+            text.Size = 1f;
+            const int NUMBER_OF_MAP_ELEMENTS = 9;
+
+            _spriteBatch.Draw(
+                nullTexture,
+                new Rectangle(windowOffSetX, 20, 280, 550),
+                new Color(0, 0, 0, 100)
+            );
+            for (int i = 0; i < NUMBER_OF_MAP_ELEMENTS; i++)
+            {
+                MapElement mapElement = map.MapElements[i];
+                if (mapElement == null)
+                {
+                    continue;
+                }
+                destinationRectangle.X = windowOffSetX;
+                destinationRectangle.Y = 50 + i * 60;
+                sourceRectangle = mapElement.SourceRectangle;
+                if (sourceRectangle.Width > sourceRectangle.Height)
+                {
+                    destinationRectangle.Width = 45;
+                    destinationRectangle.Height = (int)(
+                        ((float)sourceRectangle.Height / (float)sourceRectangle.Height) * 45f
+                    );
+                }
+                else
+                {
+                    destinationRectangle.Height = 45;
+                    destinationRectangle.Width = (int)(
+                        ((float)sourceRectangle.Height / (float)sourceRectangle.Height) * 45f
+                    );
+                }
+                _spriteBatch.Draw(
+                    mapTextures[mapElement.SourceIndex],
+                    destinationRectangle,
+                    Color.White
+                );
+                text.Color = Color.Gold;
+                text.DrawText(
+                    new Vector2(destinationRectangle.X + 50, destinationRectangle.Y),
+                    mapElement.Name
+                );
+            }
+        }
+        #endregion
     }
 }

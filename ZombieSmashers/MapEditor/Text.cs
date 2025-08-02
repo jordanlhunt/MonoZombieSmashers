@@ -36,7 +36,6 @@ namespace MapEditor
         #region Public Methods
         public void DrawText(Vector2 drawCoordinates, string textToDraw)
         {
-            spriteBatch.Begin();
             spriteBatch.DrawString(
                 spriteFont,
                 textToDraw,
@@ -48,7 +47,6 @@ namespace MapEditor
                 SpriteEffects.None,
                 1f
             );
-            spriteBatch.End();
         }
 
         public Rectangle GetTextBounds(SpriteFont spriteFont, string text, Vector2 position)
