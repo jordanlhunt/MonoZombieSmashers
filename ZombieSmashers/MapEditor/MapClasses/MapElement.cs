@@ -16,7 +16,7 @@ namespace MapEditor.MapClasses
             get { return name; }
             set { name = value; }
         }
-        public int SourceIndex
+        public int ElementIndex
         {
             get { return sourceIndex; }
             set { sourceIndex = value; }
