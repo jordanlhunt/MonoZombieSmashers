@@ -1,5 +1,4 @@
-﻿using System;
-using MapEditor.MapClasses;
+﻿using MapEditor.MapClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -27,7 +26,8 @@ namespace MapEditor
         int currentLayer = 1;
         bool isRightMouseDown;
         bool isMouseButtonDragging;
-        bool isMouseClick;
+        bool isMouseClicked;
+        bool isMouseClickReleased;
         Map map;
         #endregion
         public Game1()
@@ -79,9 +79,10 @@ namespace MapEditor
         {
             _spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            DrawMapSegments();
-            DrawCursor();
             map.Draw(_spriteBatch, mapTextures, new Vector2());
+            DrawMapSegments();
+            DrawLayerSwitchButton();
+            DrawCursor();
             _spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -142,10 +143,10 @@ namespace MapEditor
             currentMouseState = Mouse.GetState();
             mouseX = currentMouseState.X;
             mouseY = currentMouseState.Y;
-            bool isMouseClicked =
+            isMouseClicked =
                 previousMouseState.LeftButton == ButtonState.Released
                 && currentMouseState.LeftButton == ButtonState.Pressed;
-            bool isMouseClickReleased =
+            isMouseClickReleased =
                 previousMouseState.LeftButton == ButtonState.Pressed
                 && currentMouseState.LeftButton == ButtonState.Released;
             if (isMouseClicked && !isMouseButtonDragging)
@@ -167,7 +168,12 @@ namespace MapEditor
                     }
                 }
             }
-            if (isMouseButtonDragging && mouseDragMapSegment >= 0 && currentLayer >= 0)
+            if (
+                isMouseButtonDragging
+                && mouseDragMapSegment >= 0
+                && currentLayer >= 0
+                && map.MapSegments[currentLayer, mouseDragMapSegment] != null
+            )
             {
                 map.MapSegments[currentLayer, mouseDragMapSegment].Location = new Vector2(
                     currentMouseState.X - 16,
@@ -196,6 +202,36 @@ namespace MapEditor
                 SpriteEffects.None,
                 0.0f
             );
+        }
+
+        private void DrawLayerSwitchButton()
+        {
+            string layerName = "map";
+            switch (currentLayer)
+            {
+                case 0:
+                    layerName = "background";
+                    break;
+                case 1:
+                    layerName = "midground";
+                    break;
+                case 2:
+                    layerName = "foreground";
+                    break;
+            }
+            Vector2 layerNameVector = spriteFont.MeasureString("layer: " + layerName);
+            Rectangle buttonRectangle = new Rectangle(
+                5,
+                5,
+                (int)layerNameVector.X,
+                (int)layerNameVector.Y
+            );
+            Point mouseCursor = new Point(currentMouseState.X, currentMouseState.Y);
+            text.DrawText(new Vector2(5, 5), "layer: " + layerName);
+            if (text.IsTextClicked(buttonRectangle, mouseCursor, isMouseClicked))
+            {
+                currentLayer = (currentLayer + 1) % 3;
+            }
         }
         #endregion
     }

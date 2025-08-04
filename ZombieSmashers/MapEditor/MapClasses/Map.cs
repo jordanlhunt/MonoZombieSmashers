@@ -67,7 +67,7 @@ namespace MapEditor.MapClasses
                 }
                 else if (i == 2)
                 {
-                    layerColor = Color.Black;
+                    layerColor = Color.DarkSlateGray;
                     scale = 1.25f;
                 }
                 scale *= .5f;

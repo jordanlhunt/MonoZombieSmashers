@@ -17,13 +17,25 @@ namespace MapEditor
         #region Properties
         public Color Color
         {
-            get { return currentColor; }
-            set { currentColor = value; }
+            get
+            {
+                return currentColor;
+            }
+            set
+            {
+                currentColor = value;
+            }
         }
         public float Size
         {
-            get { return size; }
-            set { size = value; }
+            get
+            {
+                return size;
+            }
+            set
+            {
+                size = value;
+            }
         }
         #endregion
         #region Constructor
