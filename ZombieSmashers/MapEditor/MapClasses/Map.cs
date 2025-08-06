@@ -106,19 +106,21 @@ namespace MapEditor.MapClasses
             float layerScaleFactor = CalculateLayerScale(layerIndex);
             for (int i = MAP_SEGMENTS_PER_LAYER - 1; i >= 0; i--)
             {
-                if (mapSegments[layerIndex, i] != null) { }
-                Rectangle sourceRectangle = mapElements[
-                    mapSegments[layerIndex, i].SegmentIndex
-                ].SourceRectangle;
-                Rectangle destinationRectangle = new Rectangle(
-                    (int)(mapSegments[layerIndex, i].Location.X - scroll.X * layerScaleFactor),
-                    (int)(mapSegments[layerIndex, i].Location.Y - scroll.Y * layerScaleFactor),
-                    (int)(sourceRectangle.Width * layerScaleFactor),
-                    (int)(sourceRectangle.Height * layerScaleFactor)
-                );
-                if (destinationRectangle.Contains(mouseX, mouseY))
+                if (mapSegments[layerIndex, i] != null)
                 {
-                    return i;
+                    Rectangle sourceRectangle = mapElements[
+                        mapSegments[layerIndex, i].SegmentIndex
+                    ].SourceRectangle;
+                    Rectangle destinationRectangle = new Rectangle(
+                        (int)(mapSegments[layerIndex, i].Location.X - scroll.X * layerScaleFactor),
+                        (int)(mapSegments[layerIndex, i].Location.Y - scroll.Y * layerScaleFactor),
+                        (int)(sourceRectangle.Width * layerScaleFactor),
+                        (int)(sourceRectangle.Height * layerScaleFactor)
+                    );
+                    if (destinationRectangle.Contains(mouseX, mouseY))
+                    {
+                        return i;
+                    }
                 }
             }
             return -1;

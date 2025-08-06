@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MapEditor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82944e8143f17362c25e339109a6f9d2711d2d52")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+caf425d050f6e397737a1a5c0c01c0abd2304368")]
 [assembly: System.Reflection.AssemblyProductAttribute("MapEditor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MapEditor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

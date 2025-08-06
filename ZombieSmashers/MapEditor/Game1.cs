@@ -147,6 +147,16 @@ namespace MapEditor
 
         private void MouseUpdate()
         {
+            UpdateMouseStates();
+            HandleMapSegmentDragStart();
+            HandlePaletteClick();
+            UpdateDraggedSegmentPosition();
+            HandleMouseRelease();
+            HandleMapScrolling();
+        }
+
+        private void UpdateMouseStates()
+        {
             previousMouseState = currentMouseState;
             previousMouseX = previousMouseState.X;
             previousMouseY = previousMouseState.Y;
@@ -160,63 +170,85 @@ namespace MapEditor
             isMouseClickReleased =
                 previousMouseState.LeftButton == ButtonState.Pressed
                 && currentMouseState.LeftButton == ButtonState.Released;
+        }
 
+        private void HandleMapSegmentDragStart()
+        {
+            int windowOffSetX = _graphics.PreferredBackBufferWidth - 290;
+            if (isMouseClicked && !isMouseButtonDragging && mouseX < windowOffSetX)
+            {
+                int hoveredSegment = map.GetHoveredSegment(mouseX, mouseY, currentLayer, mapScroll);
+                if (hoveredSegment != -1)
+                {
+                    isMouseButtonDragging = true;
+                    mouseDragMapSegment = hoveredSegment;
+                    mouseDragMapSegmentLayer = currentLayer;
+                }
+            }
+        }
+
+        private void HandlePaletteClick()
+        {
             int windowOffSetX = _graphics.PreferredBackBufferWidth - 290;
             int paletteWidth = 280;
-
-            if (isMouseClicked && !isMouseButtonDragging)
+            if (
+                isMouseClicked
+                && !isMouseButtonDragging
+                && mouseX >= windowOffSetX
+                && mouseX <= windowOffSetX + paletteWidth
+            )
             {
-                if (
-                    currentMouseState.X >= windowOffSetX
-                    && currentMouseState.X <= windowOffSetX + paletteWidth
-                )
+                int paletteIndex = (mouseY - 50) / 60;
+                if (paletteIndex >= 0 && paletteIndex < 9)
                 {
-                    int paletteIndex = (currentMouseState.Y - 50) / 60;
-                    if (paletteIndex >= 0 && paletteIndex < 9)
+                    int segmentIndex = map.AddMapSegment(currentLayer, paletteIndex);
+                    if (segmentIndex >= 0)
                     {
-                        int segmentIndex = map.AddMapSegment(currentLayer, paletteIndex);
+                        isMouseButtonDragging = true;
+                        float layerScaler = .5f;
+                        if (currentLayer == 0)
+                            layerScaler = .375f;
+                        else if (currentLayer == 2)
+                            layerScaler = .625f;
 
-                        if (segmentIndex >= 0)
-                        {
-                            isMouseButtonDragging = true;
-                            float layerScaler = .5f;
-                            if (currentLayer == 0)
-                            {
-                                layerScaler = .375f;
-                            }
-                            else if (currentLayer == 2)
-                            {
-                                layerScaler = .625f;
-                            }
-                            mouseDragMapSegment = segmentIndex;
-                            mouseDragMapSegmentLayer = currentLayer;
-                            map.MapSegments[currentLayer, mouseDragMapSegment].Location =
-                                new Vector2(
-                                    (currentMouseState.X - 16) * layerScaler,
-                                    (currentMouseState.Y - 16) * layerScaler
-                                );
-                        }
+                        mouseDragMapSegment = segmentIndex;
+                        mouseDragMapSegmentLayer = currentLayer;
+                        map.MapSegments[currentLayer, mouseDragMapSegment].Location = new Vector2(
+                            (currentMouseState.X - 16) * layerScaler,
+                            (currentMouseState.Y - 16) * layerScaler
+                        );
                     }
                 }
             }
-            if (
-                isMouseButtonDragging
-                && mouseDragMapSegment >= 0
-                && currentLayer >= 0
-                && map.MapSegments[currentLayer, mouseDragMapSegment] != null
-            )
+        }
+
+        private void UpdateDraggedSegmentPosition()
+        {
+            if (isMouseButtonDragging && mouseDragMapSegment >= 0 && currentLayer >= 0)
             {
-                map.MapSegments[currentLayer, mouseDragMapSegment].Location = new Vector2(
-                    currentMouseState.X - 16,
-                    currentMouseState.Y - 16
-                );
+                var segment = map.MapSegments[currentLayer, mouseDragMapSegment];
+                if (segment != null)
+                {
+                    segment.Location = new Vector2(
+                        currentMouseState.X - 16,
+                        currentMouseState.Y - 16
+                    );
+                }
             }
+        }
+
+        private void HandleMouseRelease()
+        {
             if (isMouseButtonDragging && isMouseClickReleased)
             {
                 isMouseButtonDragging = false;
                 mouseDragMapSegment = -1;
                 mouseDragMapSegmentLayer = -1;
             }
+        }
+
+        private void HandleMapScrolling()
+        {
             if (isMiddleMouseDown)
             {
                 mapScroll.X -= (mouseX - previousMouseX) * 3.75f;
