@@ -11,6 +11,10 @@ namespace MapEditor.MapClasses
         const int MAX_MAP_ELEMENTS = 512;
         const int MAP_SEGMENTS_LAYERS = 3;
         const int MAP_SEGMENTS_PER_LAYER = 64;
+
+        const int LAYER_TYPE_BACKGROUND = 0;
+        const int LAYER_TYPE_MIDGROUND = 1;
+        const int LAYER_TYPE_FOREGROUND = 2;
         #endregion
         #region Member Variables
         MapElement[] mapElements;
@@ -60,12 +64,12 @@ namespace MapEditor.MapClasses
             {
                 float scale = 1.0f;
                 Color layerColor = Color.White;
-                if (i == 0)
+                if (i == LAYER_TYPE_BACKGROUND)
                 {
                     layerColor = Color.DimGray;
                     scale = 0.75f;
                 }
-                else if (i == 2)
+                else if (i == LAYER_TYPE_FOREGROUND)
                 {
                     layerColor = Color.DarkSlateGray;
                     scale = 1.25f;
@@ -96,6 +100,30 @@ namespace MapEditor.MapClasses
                 }
             }
         }
+
+        public int GetHoveredSegment(int mouseX, int mouseY, int layerIndex, Vector2 scroll)
+        {
+            float layerScaleFactor = CalculateLayerScale(layerIndex);
+            for (int i = MAP_SEGMENTS_PER_LAYER - 1; i >= 0; i--)
+            {
+                if (mapSegments[layerIndex, i] != null) { }
+                Rectangle sourceRectangle = mapElements[
+                    mapSegments[layerIndex, i].SegmentIndex
+                ].SourceRectangle;
+                Rectangle destinationRectangle = new Rectangle(
+                    (int)(mapSegments[layerIndex, i].Location.X - scroll.X * layerScaleFactor),
+                    (int)(mapSegments[layerIndex, i].Location.Y - scroll.Y * layerScaleFactor),
+                    (int)(sourceRectangle.Width * layerScaleFactor),
+                    (int)(sourceRectangle.Height * layerScaleFactor)
+                );
+                if (destinationRectangle.Contains(mouseX, mouseY))
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
         #endregion
 
 
@@ -150,6 +178,27 @@ namespace MapEditor.MapClasses
                         tempRectangle,
                         flags
                     );
+                }
+            }
+        }
+
+        public float CalculateLayerScale(int layerIndex)
+        {
+            const float baseScale = 0.5f;
+
+            switch (layerIndex)
+            {
+                case LAYER_TYPE_BACKGROUND:
+                {
+                    return 0.75f * baseScale;
+                }
+                case LAYER_TYPE_FOREGROUND:
+                {
+                    return 1.25f * baseScale;
+                }
+                default:
+                {
+                    return baseScale;
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using MapEditor.MapClasses;
+﻿using System.Runtime.InteropServices.Marshalling;
+using MapEditor.MapClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -23,12 +24,15 @@ namespace MapEditor
         int previousMouseY;
         int mouseDragMapSegment = -1;
         int mouseDragMapSegmentLayer = -1;
+        int mouseDragSegmentIndex = -1; // Replace your current dragging tracking
         int currentLayer = 1;
-        bool isRightMouseDown;
         bool isMouseButtonDragging;
         bool isMouseClicked;
         bool isMouseClickReleased;
+        bool isMiddleMouseDown;
         Map map;
+
+        Vector2 mapScroll;
         #endregion
         public Game1()
         {
@@ -79,10 +83,13 @@ namespace MapEditor
         {
             _spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            map.Draw(_spriteBatch, mapTextures, new Vector2());
+
+            map.Draw(_spriteBatch, mapTextures, mapScroll);
+            //map.Draw(_spriteBatch, mapTextures, mapScroll);
             DrawMapSegments();
             DrawLayerSwitchButton();
             DrawCursor();
+
             _spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -93,10 +100,11 @@ namespace MapEditor
             Rectangle sourceRectangle = new Rectangle();
             Rectangle destinationRectangle = new Rectangle();
             text.Size = 1f;
+            int windowOffSetX = _graphics.PreferredBackBufferWidth - 290;
             const int NUMBER_OF_MAP_ELEMENTS = 9;
             _spriteBatch.Draw(
                 nullTexture,
-                new Rectangle(500, 20, 280, 550),
+                new Rectangle(windowOffSetX, 20, 280, 550),
                 new Color(0, 0, 0, 100)
             );
             for (int i = 0; i < NUMBER_OF_MAP_ELEMENTS; i++)
@@ -106,7 +114,7 @@ namespace MapEditor
                 {
                     continue;
                 }
-                destinationRectangle.X = 500;
+                destinationRectangle.X = windowOffSetX;
                 destinationRectangle.Y = 50 + i * 60;
                 sourceRectangle = mapElement.SourceRectangle;
                 if (sourceRectangle.Width > sourceRectangle.Height)
@@ -140,30 +148,53 @@ namespace MapEditor
         private void MouseUpdate()
         {
             previousMouseState = currentMouseState;
+            previousMouseX = previousMouseState.X;
+            previousMouseY = previousMouseState.Y;
             currentMouseState = Mouse.GetState();
             mouseX = currentMouseState.X;
             mouseY = currentMouseState.Y;
+            isMiddleMouseDown = currentMouseState.MiddleButton == ButtonState.Pressed;
             isMouseClicked =
                 previousMouseState.LeftButton == ButtonState.Released
                 && currentMouseState.LeftButton == ButtonState.Pressed;
             isMouseClickReleased =
                 previousMouseState.LeftButton == ButtonState.Pressed
                 && currentMouseState.LeftButton == ButtonState.Released;
+
+            int windowOffSetX = _graphics.PreferredBackBufferWidth - 290;
+            int paletteWidth = 280;
+
             if (isMouseClicked && !isMouseButtonDragging)
             {
-                if (currentMouseState.X >= 500 && currentMouseState.X <= 780)
+                if (
+                    currentMouseState.X >= windowOffSetX
+                    && currentMouseState.X <= windowOffSetX + paletteWidth
+                )
                 {
                     int paletteIndex = (currentMouseState.Y - 50) / 60;
                     if (paletteIndex >= 0 && paletteIndex < 9)
                     {
                         int segmentIndex = map.AddMapSegment(currentLayer, paletteIndex);
+
                         if (segmentIndex >= 0)
                         {
                             isMouseButtonDragging = true;
+                            float layerScaler = .5f;
+                            if (currentLayer == 0)
+                            {
+                                layerScaler = .375f;
+                            }
+                            else if (currentLayer == 2)
+                            {
+                                layerScaler = .625f;
+                            }
                             mouseDragMapSegment = segmentIndex;
                             mouseDragMapSegmentLayer = currentLayer;
                             map.MapSegments[currentLayer, mouseDragMapSegment].Location =
-                                new Vector2(currentMouseState.X - 16, currentMouseState.Y - 16);
+                                new Vector2(
+                                    (currentMouseState.X - 16) * layerScaler,
+                                    (currentMouseState.Y - 16) * layerScaler
+                                );
                         }
                     }
                 }
@@ -185,6 +216,11 @@ namespace MapEditor
                 isMouseButtonDragging = false;
                 mouseDragMapSegment = -1;
                 mouseDragMapSegmentLayer = -1;
+            }
+            if (isMiddleMouseDown)
+            {
+                mapScroll.X -= (mouseX - previousMouseX) * 3.75f;
+                mapScroll.Y -= (mouseY - previousMouseY) * 3.75f;
             }
         }
 
