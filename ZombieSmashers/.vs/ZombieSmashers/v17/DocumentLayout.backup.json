@@ -53,8 +53,7 @@
               "RelativeToolTip": "MapEditor\\MapClasses\\Map.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T13:08:18.096Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-29T13:08:18.096Z"
             },
             {
               "$type": "Document",
@@ -66,8 +65,7 @@
               "RelativeToolTip": "MapEditor\\MapClasses\\MapElement.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-29T12:55:56.765Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-29T12:55:56.765Z"
             },
             {
               "$type": "Document",
@@ -77,7 +75,7 @@
               "RelativeDocumentMoniker": "MapEditor\\Game1.cs",
               "ToolTip": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\Game1.cs",
               "RelativeToolTip": "MapEditor\\Game1.cs",
-              "ViewState": "AgIAAH0AAAAAAAAAAAAUwJUAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAgwEwAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-28T03:55:38.061Z",
               "EditorCaption": ""
@@ -92,8 +90,7 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\..\\.nuget\\packages\\monogame.content.builder.task\\3.8.4\\build\\MonoGame.Content.Builder.Task.targets",
               "ViewState": "AgIAAI0AAAAAAAAAAAAzwJoAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-07-28T03:46:30.1Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T03:46:30.1Z"
             },
             {
               "$type": "Document",
@@ -105,8 +102,7 @@
               "RelativeToolTip": "MapEditor\\Text.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAA1wEEAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-27T18:34:15.766Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-27T18:34:15.766Z"
             },
             {
               "$type": "Document",
@@ -118,8 +114,7 @@
               "RelativeToolTip": "ZombieSmashersMonogame\\Game1.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAmwBsAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-27T18:30:16.892Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-27T18:30:16.892Z"
             },
             {
               "$type": "Document",

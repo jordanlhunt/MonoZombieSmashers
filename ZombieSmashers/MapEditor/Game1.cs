@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices.Marshalling;
-using MapEditor.MapClasses;
+﻿using MapEditor.MapClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,21 +16,20 @@ namespace MapEditor
         Texture2D nullTexture;
         Texture2D iconTexture;
         MouseState currentMouseState;
+        private Vector2 segmentDragOffset;
         MouseState previousMouseState;
+        DrawingMode drawingMode;
         int mouseX;
         int mouseY;
         int previousMouseX;
         int previousMouseY;
         int mouseDragMapSegment = -1;
-        int mouseDragMapSegmentLayer = -1;
-        int mouseDragSegmentIndex = -1; // Replace your current dragging tracking
         int currentLayer = 1;
         bool isMouseButtonDragging;
         bool isMouseClicked;
         bool isMouseClickReleased;
         bool isMiddleMouseDown;
         Map map;
-
         Vector2 mapScroll;
         #endregion
         public Game1()
@@ -43,6 +41,7 @@ namespace MapEditor
 
         protected override void Initialize()
         {
+            drawingMode = DrawingMode.SegmentSelection;
             map = new Map();
             _graphics.PreferredBackBufferWidth = 1280;
             _graphics.PreferredBackBufferHeight = 720;
@@ -83,13 +82,16 @@ namespace MapEditor
         {
             _spriteBatch.Begin();
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             map.Draw(_spriteBatch, mapTextures, mapScroll);
-            //map.Draw(_spriteBatch, mapTextures, mapScroll);
-            DrawMapSegments();
-            DrawLayerSwitchButton();
+            switch (drawingMode)
+            {
+                case DrawingMode.SegmentSelection:
+                    DrawMapSegments();
+                    break;
+            }
+            DrawMapGrid();
+            DrawText();
             DrawCursor();
-
             _spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -121,14 +123,14 @@ namespace MapEditor
                 {
                     destinationRectangle.Width = 45;
                     destinationRectangle.Height = (int)(
-                        (float)sourceRectangle.Height / (float)sourceRectangle.Height * 45f
+                        sourceRectangle.Height / (float)sourceRectangle.Height * 45f
                     );
                 }
                 else
                 {
                     destinationRectangle.Height = 45;
                     destinationRectangle.Width = (int)(
-                        (float)sourceRectangle.Height / (float)sourceRectangle.Height * 45f
+                        sourceRectangle.Height / (float)sourceRectangle.Height * 45f
                     );
                 }
                 _spriteBatch.Draw(
@@ -148,9 +150,30 @@ namespace MapEditor
         private void MouseUpdate()
         {
             UpdateMouseStates();
-            HandleMapSegmentDragStart();
-            HandlePaletteClick();
-            UpdateDraggedSegmentPosition();
+            if (drawingMode == DrawingMode.SegmentSelection)
+            {
+                HandleMapSegmentDragStart();
+                HandlePaletteClick();
+                UpdateDraggedSegmentPosition();
+            }
+            else if (drawingMode == DrawingMode.CollisionMap && IsAbleToEdit())
+            {
+                // Convert mouse position to grid coordinates
+                int gridX = (mouseX + (int)(mapScroll.X / 2)) / map.GridCellSize;
+                int gridY = (mouseY + (int)(mapScroll.Y / 2)) / map.GridCellSize;
+                // Ensure coordinates are within valid range
+                if (gridX >= 0 && gridY >= 0 && gridX < map.GridSize && gridY < map.GridSize)
+                {
+                    if (currentMouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        map.MapGrid[gridX, gridY] = 1;
+                    }
+                    else if (currentMouseState.RightButton == ButtonState.Pressed)
+                    {
+                        map.MapGrid[gridX, gridY] = 0;
+                    }
+                }
+            }
             HandleMouseRelease();
             HandleMapScrolling();
         }
@@ -175,14 +198,29 @@ namespace MapEditor
         private void HandleMapSegmentDragStart()
         {
             int windowOffSetX = _graphics.PreferredBackBufferWidth - 290;
-            if (isMouseClicked && !isMouseButtonDragging && mouseX < windowOffSetX)
+            if (drawingMode == DrawingMode.SegmentSelection)
             {
-                int hoveredSegment = map.GetHoveredSegment(mouseX, mouseY, currentLayer, mapScroll);
-                if (hoveredSegment != -1)
+                if (isMouseClicked && !isMouseButtonDragging && mouseX < windowOffSetX)
                 {
-                    isMouseButtonDragging = true;
-                    mouseDragMapSegment = hoveredSegment;
-                    mouseDragMapSegmentLayer = currentLayer;
+                    int hoveredSegment = map.GetHoveredSegment(
+                        mouseX,
+                        mouseY,
+                        currentLayer,
+                        mapScroll
+                    );
+                    if (hoveredSegment != -1)
+                    {
+                        isMouseButtonDragging = true;
+                        mouseDragMapSegment = hoveredSegment;
+                        float layerScaler = GetLayerScaler();
+                        Vector2 segmentScreenPos =
+                            map.MapSegments[currentLayer, hoveredSegment].Location
+                            - mapScroll * layerScaler;
+                        segmentDragOffset = new Vector2(
+                            segmentScreenPos.X - mouseX,
+                            segmentScreenPos.Y - mouseY
+                        );
+                    }
                 }
             }
         }
@@ -205,17 +243,22 @@ namespace MapEditor
                     if (segmentIndex >= 0)
                     {
                         isMouseButtonDragging = true;
-                        float layerScaler = .5f;
-                        if (currentLayer == 0)
-                            layerScaler = .375f;
-                        else if (currentLayer == 2)
-                            layerScaler = .625f;
-
+                        float layerScaler = GetLayerScaler();
+                        Rectangle sourceRectangle = map.MapElements[paletteIndex].SourceRectangle;
+                        Vector2 worldPos = new Vector2(
+                            mouseX + mapScroll.X * layerScaler,
+                            mouseY + mapScroll.Y * layerScaler
+                        );
+                        Vector2 segmentLocation = new Vector2(
+                            worldPos.X - sourceRectangle.Width * layerScaler / 2,
+                            worldPos.Y - sourceRectangle.Height * layerScaler / 2
+                        );
                         mouseDragMapSegment = segmentIndex;
-                        mouseDragMapSegmentLayer = currentLayer;
-                        map.MapSegments[currentLayer, mouseDragMapSegment].Location = new Vector2(
-                            (currentMouseState.X - 16) * layerScaler,
-                            (currentMouseState.Y - 16) * layerScaler
+                        map.MapSegments[currentLayer, mouseDragMapSegment].Location =
+                            segmentLocation;
+                        segmentDragOffset = new Vector2(
+                            sourceRectangle.Width * layerScaler / 2,
+                            sourceRectangle.Height * layerScaler / 2
                         );
                     }
                 }
@@ -226,14 +269,13 @@ namespace MapEditor
         {
             if (isMouseButtonDragging && mouseDragMapSegment >= 0 && currentLayer >= 0)
             {
-                var segment = map.MapSegments[currentLayer, mouseDragMapSegment];
-                if (segment != null)
-                {
-                    segment.Location = new Vector2(
-                        currentMouseState.X - 16,
-                        currentMouseState.Y - 16
-                    );
-                }
+                float layerScaler = GetLayerScaler();
+                Vector2 worldPosition = new Vector2(
+                    mouseX + mapScroll.X * layerScaler,
+                    mouseY + mapScroll.Y * layerScaler
+                );
+                map.MapSegments[currentLayer, mouseDragMapSegment].Location =
+                    worldPosition - segmentDragOffset;
             }
         }
 
@@ -243,7 +285,6 @@ namespace MapEditor
             {
                 isMouseButtonDragging = false;
                 mouseDragMapSegment = -1;
-                mouseDragMapSegmentLayer = -1;
             }
         }
 
@@ -272,7 +313,13 @@ namespace MapEditor
             );
         }
 
-        private void DrawLayerSwitchButton()
+        private void DrawText()
+        {
+            DrawLayerButton();
+            DrawDrawingModeText();
+        }
+
+        private void DrawLayerButton()
         {
             string layerName = "map";
             switch (currentLayer)
@@ -300,6 +347,105 @@ namespace MapEditor
             {
                 currentLayer = (currentLayer + 1) % 3;
             }
+        }
+
+        private void DrawDrawingModeText()
+        {
+            Vector2 drawPosition = new Vector2(5, 25);
+            string drawingModeText = "";
+            switch (drawingMode)
+            {
+                case DrawingMode.SegmentSelection:
+                    drawingModeText = "Draw mode: Select";
+                    break;
+                case DrawingMode.CollisionMap:
+                    drawingModeText = "Draw mode: Column";
+                    break;
+            }
+            text.DrawText(drawPosition, drawingModeText);
+            Vector2 drawingModeTextVector = spriteFont.MeasureString(drawingModeText);
+            Rectangle textRectangle = new Rectangle(
+                (int)drawPosition.X,
+                (int)drawPosition.Y,
+                (int)drawingModeTextVector.X,
+                (int)drawingModeTextVector.Y
+            );
+            Point mouseCursor = new Point(currentMouseState.X, currentMouseState.Y);
+            if (text.IsTextClicked(textRectangle, mouseCursor, isMouseClicked))
+            {
+                drawingMode = (DrawingMode)((int)(drawingMode + 1) % 2);
+            }
+        }
+
+        private void DrawMapGrid()
+        {
+            for (int y = 0; y < map.GridSize; y++)
+            {
+                for (int x = 0; x < map.GridSize; x++)
+                {
+                    Rectangle destinationRectangle = new Rectangle(
+                        x * map.GridCellSize - (int)(mapScroll.X / 2),
+                        y * map.GridCellSize - (int)(mapScroll.Y / 2),
+                        map.GridCellSize,
+                        map.GridCellSize
+                    );
+                    if (x < map.GridSize - 1)
+                    {
+                        _spriteBatch.Draw(
+                            nullTexture,
+                            new Rectangle(
+                                destinationRectangle.X,
+                                destinationRectangle.Y,
+                                map.GridCellSize,
+                                1
+                            ),
+                            new Color(221, 147, 234, 100)
+                        );
+                    }
+                    if (y < map.GridSize - 1)
+                    {
+                        _spriteBatch.Draw(
+                            nullTexture,
+                            new Rectangle(
+                                destinationRectangle.X,
+                                destinationRectangle.Y,
+                                1,
+                                map.GridCellSize
+                            ),
+                            new Color(221, 147, 234, 100)
+                        );
+                    }
+                    if (x < map.GridSize && y < map.GridSize && map.MapGrid[x, y] == 1)
+                    {
+                        _spriteBatch.Draw(
+                            nullTexture,
+                            destinationRectangle,
+                            new Color(221, 147, 234, 100)
+                        );
+                    }
+                }
+            }
+        }
+
+        private bool IsAbleToEdit()
+        {
+            int windowOffSetX = _graphics.PreferredBackBufferWidth - 290;
+            // Only allow editing in main map area (avoid UI elements)
+            return mouseX < windowOffSetX && mouseY > 50;
+        }
+
+        private float GetLayerScaler()
+        {
+            float layerScaler = .5f;
+            if (currentLayer == 0)
+            {
+                layerScaler = .375f;
+            }
+            else if (currentLayer == 2)
+            {
+                layerScaler = .625f;
+            }
+            return layerScaler;
         }
         #endregion
     }

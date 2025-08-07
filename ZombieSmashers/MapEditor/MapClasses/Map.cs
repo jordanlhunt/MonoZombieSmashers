@@ -15,10 +15,13 @@ namespace MapEditor.MapClasses
         const int LAYER_TYPE_BACKGROUND = 0;
         const int LAYER_TYPE_MIDGROUND = 1;
         const int LAYER_TYPE_FOREGROUND = 2;
+        const int MAP_GRID_SIZE = 20;
+        const int MAP_GRID_CELL_SIZE = 32;
         #endregion
         #region Member Variables
         MapElement[] mapElements;
         MapSegment[,] mapSegments;
+        int[,] mapGrid;
         #endregion
         #region Properties
         public MapElement[] MapElements
@@ -30,12 +33,28 @@ namespace MapEditor.MapClasses
         {
             get { return mapSegments; }
         }
+
+        public int[,] MapGrid
+        {
+            get { return mapGrid; }
+        }
+
+        public int GridSize
+        {
+            get { return MAP_GRID_SIZE; }
+        }
+
+        public int GridCellSize
+        {
+            get { return MAP_GRID_CELL_SIZE; }
+        }
         #endregion
         #region Constructor
         public Map()
         {
             mapElements = new MapElement[MAX_MAP_ELEMENTS];
             mapSegments = new MapSegment[MAP_SEGMENTS_LAYERS, MAP_SEGMENTS_PER_LAYER];
+            mapGrid = new int[MAP_GRID_SIZE, MAP_GRID_SIZE];
             ReadMapElements();
         }
         #endregion

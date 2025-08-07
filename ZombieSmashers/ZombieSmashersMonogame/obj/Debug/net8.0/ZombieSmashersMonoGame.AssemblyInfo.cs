@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZombieSmashersMonoGame")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82944e8143f17362c25e339109a6f9d2711d2d52")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ad36316f2aa0c97504c943f4e9a28554d9d83464")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZombieSmashersMonoGame")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZombieSmashersMonoGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

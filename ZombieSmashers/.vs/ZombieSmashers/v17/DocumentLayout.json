@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\mapeditor\\mapclasses\\map.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|solutionrelative:mapeditor\\mapclasses\\map.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\mapeditor\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|solutionrelative:mapeditor\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\mapeditor\\drawingmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|solutionrelative:mapeditor\\drawingmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\mapeditor\\text.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,10 +30,6 @@
       "RelativeMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|solutionrelative:mapeditor\\mapclasses\\mapelement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\mapeditor\\mapclasses\\map.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D6DCEAC9-9EDE-482E-A417-6A38FC04B433}|MapEditor\\MapEditor.csproj|solutionrelative:mapeditor\\mapclasses\\map.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{24935571-65D4-288D-3655-7EEC5718335F}|ZombieSmashersMonogame\\ZombieSmashersMonoGame.csproj|c:\\users\\jorda\\source\\repos\\csharp\\monogame\\monozombiesmashers\\zombiesmashers\\zombiesmashersmonogame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{24935571-65D4-288D-3655-7EEC5718335F}|ZombieSmashersMonogame\\ZombieSmashersMonoGame.csproj|solutionrelative:zombiesmashersmonogame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -37,7 +41,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,20 +49,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
+              "Title": "DrawingMode.cs",
+              "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\DrawingMode.cs",
+              "RelativeDocumentMoniker": "MapEditor\\DrawingMode.cs",
+              "ToolTip": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\DrawingMode.cs",
+              "RelativeToolTip": "MapEditor\\DrawingMode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T19:27:32.3Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Map.cs",
               "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\MapClasses\\Map.cs",
               "RelativeDocumentMoniker": "MapEditor\\MapClasses\\Map.cs",
               "ToolTip": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\MapClasses\\Map.cs",
               "RelativeToolTip": "MapEditor\\MapClasses\\Map.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAFwAAAAAAAAAAIAzwE0AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-29T13:08:18.096Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "MapElement.cs",
               "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\MapClasses\\MapElement.cs",
               "RelativeDocumentMoniker": "MapEditor\\MapClasses\\MapElement.cs",
@@ -71,20 +88,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\Game1.cs",
               "RelativeDocumentMoniker": "MapEditor\\Game1.cs",
               "ToolTip": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\Game1.cs",
               "RelativeToolTip": "MapEditor\\Game1.cs",
-              "ViewState": "AgIAAMwAAAAAAAAAAAAQwN8AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAADgAAAAAAAAAAAAjwFUAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-28T03:55:38.061Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "MonoGame.Content.Builder.Task.targets",
               "DocumentMoniker": "C:\\Users\\jorda\\.nuget\\packages\\monogame.content.builder.task\\3.8.4\\build\\MonoGame.Content.Builder.Task.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\.nuget\\packages\\monogame.content.builder.task\\3.8.4\\build\\MonoGame.Content.Builder.Task.targets",
@@ -97,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Text.cs",
               "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\MapEditor\\Text.cs",
               "RelativeDocumentMoniker": "MapEditor\\Text.cs",
@@ -110,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\ZombieSmashersMonogame\\Game1.cs",
               "RelativeDocumentMoniker": "ZombieSmashersMonogame\\Game1.cs",
@@ -123,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\jorda\\source\\repos\\CSHARP\\Monogame\\MonoZombieSmashers\\ZombieSmashers\\ZombieSmashersMonogame\\Program.cs",
               "RelativeDocumentMoniker": "ZombieSmashersMonogame\\Program.cs",
@@ -131,7 +148,8 @@
               "RelativeToolTip": "ZombieSmashersMonogame\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-27T18:30:14.634Z"
+              "WhenOpened": "2025-07-27T18:30:14.634Z",
+              "EditorCaption": ""
             }
           ]
         }
